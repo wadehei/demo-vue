@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="bower_components/vue-router/dist/vue-router.min.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <div>
+            <router-link to="/home">主页</router-link>
+            <router-link to="/user">用户</router-link>
+        </div>
+        <div>
+            <router-view>
+
+            </router-view>
+        </div>
+    </div>
+    <script>
+        //准备组件
+        var Home = {
+            template: '<h3>我是主页</h3>'
+        };
+        var User = {
+            template: `
+            <div>
+                <h3>我是用户</h3>
+            <ul>
+                <li><router-link to="/user/username">某个用户</router-link></li>
+                </ul>
+                <div><router-view></router-view></div>
+                </div>
+            `
+        };
+        var UserDetail={
+            template:'<h3>我是xx用户</h3>'
+        }
+        //配置路由
+        var routes = [
+            { path: '/home', component: Home },
+            { path: '/user', component: User,children:[
+                {path:'username',component:UserDetail}
+            ] },
+            { path: '*', redirect: '/home' }
+        ];
+        //生成路由实例
+        var router = new VueRouter({
+            routes: routes
+        });
+        //最后挂到vue 上
+        new Vue({
+            router: router,
+            el: '#box'
+        })
+    </script>
+</body>
+
+</html>

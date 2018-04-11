@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="bower_components/vue-router/dist/vue-router.min.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <div>
+            <router-link to="/home">主页</router-link>
+            <router-link to="/news">新闻</router-link>
+        </div>
+        <div>
+            <router-view>
+
+            </router-view>
+        </div>
+    </div>
+    <script>
+        //准备组件
+        var Home = {
+            template: '<h3>我是主页</h3>'
+        };
+        var News = {
+            template: '<h3>我是新闻</h3>'
+        };
+        //配置路由
+        var routes = [
+            { path: '/home', component: Home },
+            { path: '/news', component: News },
+            { path: '*', redirect: '/home' }
+        ];
+        //生成路由实例
+        var router = new VueRouter({
+            routes: routes
+        });
+        //最后挂到vue 上
+        new Vue({
+            router: router,
+            el: '#box'
+        })
+    </script>
+</body>
+
+</html>
