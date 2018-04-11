@@ -1,0 +1,93 @@
+vue2.0
+1.在每个组件模版中，不再支持片段代码
+组件中模版：
+之前：
+    <template></template>
+    现在：
+        必须有根元素，包裹住所有的代码
+2.关于组件定义
+vue.extend   这种方式，在2.0有，但有改动，可以用但是不用
+Vue.component(组件名称,{ 在2.0继续能用
+    data(){}
+    methods:{}
+    template
+})
+2.0推出一个组件，简洁定义方式
+var Home={
+    template:''  ->Vue.extend()
+}
+3声明周期:
+    之前:
+    init
+    created
+    beforeCompile
+    compiled
+    reday   ->mounted
+    beforeDestroy
+    destroy
+    现在:
+    beforeCreate  组件实例刚刚被创建,属性都没有
+    created    实例已经创建完成，属性已经绑定
+    beforeMount  模版编译之前
+    mounted    模版编译完成  代替之前的ready*
+    beforeUpdate   组件更新之前
+    updated    组件更新完毕*
+    beforeDestroy   组件销毁前
+    destroyed   组件销毁后
+4.  2.0循环
+    2.0默认可以添加重复数据
+    去掉隐式变量
+5. track-by="id"  -> <li v-for="(item,index) in list" :key="">
+6.  自定义键盘指令 
+之前: Vue.directive('on').keyCodes.f1=112;
+现在: Vue.config.keyCodes.ctrl=17
+7. 过滤器
+        之前:
+            系统自带很多过滤
+            {{msg|currency}}
+            {{msg|json}}
+        2.0,内置过滤器，删除了
+        lodash   工具库  _.debounce(fn,200)
+    自定义过滤器
+    自定义过滤器传参更改
+    之前：{{msg | toDou '12' '5'}}
+    现在: {{msg | toDou('12','5')}}
+
+8.
+    vm.$emit()
+    vm.$on()
+
+    父组件和子组件
+
+    子组件想要拿到父组件数据:
+    通过props
+    之前子组件可以更改父组件信息  开以是同步的 syuc
+    现在不允许
+
+
+    想更改   
+    a)父组件每次传一个对象给子组件,对象之间是引用的✔
+    b)只是不报错   通过mounted中转
+
+    可以单一事件管理组件通信
+    var Event=new Vue();
+    Event.$emit(事件名称，数据)
+    Event.$on(事件名称，function(data){
+        //data
+    }.bind(this));
+
+
+
+-------------------------
+vue动画
+vue路由
+transtion    之前属性
+2.0后transtion组件
+<transtion>
+    运动的东西(元素，属性，路由)
+</transtion>
+class定义
+.fade-enter 初始状态
+.fade-enter-active 变化成什么样->当元素出来
+.fade-leave 
+.fade-leave-active  变成什么样->当元素离开(消失)

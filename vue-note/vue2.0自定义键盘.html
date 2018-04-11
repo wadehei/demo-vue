@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script>
+        //Vue.directive('on').keyCodes.ctrl=17;
+        // Vue.config.keyCodes.enter = 17;
+        window.onload = function () {
+            new Vue({
+                el: '#box',
+                data: {
+                },
+                methods: {
+                    change() {
+                        alert('改变了');
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <input type="text" @keyup.enter="change">
+    </div>
+</body>
+
+</html>

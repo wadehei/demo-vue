@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="animate.css">
+    <script src="vue.js"></script>
+    <style>
+        p {
+            width: 100px;
+            height: 100px;
+            background: green;
+            margin: 0 auto;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el: '#box',
+                data: {
+                    show: false
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <input type="button" value="点击显示隐藏" @click="show=!show">
+        <transition enter-active-class="bounceInLeft" leave-active-class="bounceOutRight">
+            <p v-show="show" class="animated"></p>
+        </transition>
+    </div>
+</body>
+
+</html>

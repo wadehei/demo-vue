@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el: '#box',
+                data: {
+                    list: {
+                        a:'apple',
+                        b:'banana',
+                        c:'orange'
+                    }
+                },
+                methods: {
+                    add() {
+                        this.list.push('backgrpund');
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <input type="button" value="添加" @click="add">
+        <ul>
+            <li v-for="(item,index) in list" :key="">
+                {{item}} {{index}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
